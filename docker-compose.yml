@@ -1,0 +1,10 @@
+version: '3.3'
+
+services:
+  discord:
+    build: .
+    container_name: ai-bot
+    environment:
+      - DISCORD_TOKEN=${DISCORD_TOKEN}
+      - ANTHROPISM_API_KEY=${ANTHROPISM_API_KEY}
+    restart: always
