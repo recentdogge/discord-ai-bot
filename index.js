@@ -1,5 +1,14 @@
 import Anthropic from '@anthropic-ai/sdk';
 import { Client, GatewayIntentBits, Partials, ActivityType } from 'discord.js';
+import express from 'express'
+import cors from 'cors'
+
+const app = express();
+app.use(cors());
+
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
 
 const anthropic = new Anthropic({
     apiKey: process.env.ANTHROPISM_API_KEY,
@@ -30,6 +39,8 @@ client.on('ready', () => {
   client.user.setStatus('idle')
   client.user.setActivity('commands', { type: ActivityType.Listening })
   client.user.setUsername(`MōgiBot`)
+
+  app.listen(process.env.PORT || 3000);
 });
 
 client.on('interactionCreate', async interaction => {
